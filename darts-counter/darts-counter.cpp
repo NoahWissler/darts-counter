@@ -22,9 +22,11 @@ void dartevaluator(char factor, player &player){
         break;
     case 'D':
         dartvalue = player.darts[player.darts.size()-1]*2;
+        player.darts[player.darts.size()-1] = dartvalue;
         break;
     case 'T':
         dartvalue = player.darts[player.darts.size()-1]*3;
+        player.darts[player.darts.size()-1] = dartvalue;
         break;
     }
     if(player.score - dartvalue > 0){
