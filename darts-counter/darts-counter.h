@@ -1,5 +1,6 @@
 #ifndef DARTS_COUNTER_H
 #define DARTS_COUNTER_H
+#include "mainwindow.h"
 #include <cstdint>
 #include <vector>
 class player{

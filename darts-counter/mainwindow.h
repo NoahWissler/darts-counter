@@ -17,7 +17,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:
+public slots:
+
+    void updateLabels();
+
     void on_double_2_clicked();
 
     void on_triple_clicked();
@@ -66,7 +69,6 @@ private slots:
 
     void on_threw25_clicked();
 
-    void updateLabels();
 
 private:
     Ui::MainWindow *ui;

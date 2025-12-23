@@ -1,6 +1,6 @@
 #include "darts-counter.h"
 #include <cmath>
-
+extern MainWindow *g_mainWindow;
     double player::calcLegAvg(){
         if(darts.empty()){
             return 0.00;
@@ -34,7 +34,7 @@ void dartevaluator(char factor, player &player){
     }else{
             player.darts[player.darts.size()-1] = 0;
         }
-
+    g_mainWindow->updateLabels();
     }
 
 void dartsCounter(){}
