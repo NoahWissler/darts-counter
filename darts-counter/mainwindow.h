@@ -17,6 +17,57 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_double_2_clicked();
+
+    void on_triple_clicked();
+
+    void on_threw0_clicked();
+
+    void on_threw1_clicked();
+
+    void on_threw2_clicked();
+
+    void on_threw3_clicked();
+
+    void on_threw4_clicked();
+
+    void on_threw5_clicked();
+
+    void on_threw6_clicked();
+
+    void on_threw7_clicked();
+
+    void on_threw8_clicked();
+
+    void on_threw9_clicked();
+
+    void on_threw10_clicked();
+
+    void on_threw11_clicked();
+
+    void on_threw12_clicked();
+
+    void on_threw13_clicked();
+
+    void on_threw14_clicked();
+
+    void on_threw15_clicked();
+
+    void on_threw16_clicked();
+
+    void on_threw17_clicked();
+
+    void on_threw18_clicked();
+
+    void on_threw19_clicked();
+
+    void on_threw20_clicked();
+
+    void on_threw25_clicked();
+
+    void updateLabels();
+
 private:
     Ui::MainWindow *ui;
 };
