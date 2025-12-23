@@ -2,16 +2,19 @@
 #include <cmath>
 extern MainWindow *g_mainWindow;
     double player::calcLegAvg(){
-        if(darts.empty()){
+        if(darts.empty() ){
             return 0.00;
         }
 
         double legAvg {};
+        if(darts.empty()){
         for(uint8_t d : darts){
             legAvg += d;
         }
         legAvg = (legAvg/darts.size())*3;
         return (std::round(legAvg * 100) / 100);
+        }
+        return legAvg;
     }
 
 void dartevaluator(char factor, player &player){
