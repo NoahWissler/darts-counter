@@ -1,6 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include <QPushButton>
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -70,7 +70,7 @@ public slots:
     void on_threw25_clicked();
 
 
-private:
+public:
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

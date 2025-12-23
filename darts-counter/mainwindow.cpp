@@ -22,6 +22,7 @@ int currPlayer {0};
 int darts {};
 std::vector<player> players(2);
 
+
 void MainWindow::updateLabels()
 {
     ui->player1Score->setText(QString::number(players[0].score));
@@ -37,6 +38,7 @@ void MainWindow::on_double_2_clicked()
 void MainWindow::on_triple_clicked()
 {
     factor = 'T';
+    ui->threw25->setEnabled(false);
 }
 
 void MainWindow::on_threw0_clicked()
@@ -44,6 +46,7 @@ void MainWindow::on_threw0_clicked()
     players[currPlayer].darts.push_back(0);
     dartevaluator(factor, players[currPlayer]);
     factor = 'S';
+    ui->threw25->setEnabled(true);
     ++darts;
     if(darts > 2){
         if(currPlayer == 0){
@@ -63,6 +66,7 @@ void MainWindow::on_threw1_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -83,6 +87,7 @@ void MainWindow::on_threw2_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -103,6 +108,7 @@ void MainWindow::on_threw3_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -123,6 +129,7 @@ void MainWindow::on_threw4_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -143,6 +150,7 @@ void MainWindow::on_threw5_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -163,6 +171,7 @@ void MainWindow::on_threw6_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -183,6 +192,7 @@ void MainWindow::on_threw7_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -203,6 +213,7 @@ void MainWindow::on_threw8_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -222,6 +233,7 @@ void MainWindow::on_threw9_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -242,6 +254,7 @@ void MainWindow::on_threw10_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -261,6 +274,7 @@ void MainWindow::on_threw11_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -281,6 +295,7 @@ void MainWindow::on_threw12_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -300,6 +315,7 @@ void MainWindow::on_threw13_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -320,6 +336,7 @@ void MainWindow::on_threw14_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -339,6 +356,7 @@ void MainWindow::on_threw15_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -359,6 +377,7 @@ void MainWindow::on_threw16_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -378,6 +397,7 @@ void MainWindow::on_threw17_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -398,6 +418,7 @@ void MainWindow::on_threw18_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -417,6 +438,7 @@ void MainWindow::on_threw19_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -437,6 +459,7 @@ void MainWindow::on_threw20_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
@@ -456,6 +479,7 @@ void MainWindow::on_threw25_clicked()
     dartevaluator(factor, players[currPlayer]);
     ++darts;
     factor = 'S';
+    ui->threw25->setEnabled(true);
     if(darts > 2){
         if(currPlayer == 0){
             currPlayer = 1;
