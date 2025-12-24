@@ -5,7 +5,7 @@
 #include <vector>
 class player{
 public:
-    int score{501};
+    int score{30};
     std::vector<uint8_t> darts;
 
     double calcLegAvg();

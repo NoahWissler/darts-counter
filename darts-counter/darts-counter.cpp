@@ -44,17 +44,29 @@ void dartevaluator(char factor, player &player, int &darts){
         else if(darts == 2){
             player.score = player.score + player.darts[player.darts.size()-2];
             player.darts[player.darts.size()-2] = 0;
+            g_mainWindow->updateLabels();
+            --darts;
+            g_mainWindow->updateLabels();
+            ++darts;
+            g_mainWindow->updateLabels();
             ++darts;
             player.darts.push_back(0);
-            g_mainWindow->updateLabels();
+
+
         }
         else if(darts == 3){
-            player.score = player.score + player.darts[player.darts.size()-2];
-            player.darts[player.darts.size()-2] = 0;
             player.score = player.score + player.darts[player.darts.size()-3];
             player.darts[player.darts.size()-3] = 0;
+            --darts;
+            --darts;
             g_mainWindow->updateLabels();
-
+            ++darts;
+            ++darts;
+            player.score = player.score + player.darts[player.darts.size()-2];
+            player.darts[player.darts.size()-2] = 0;
+            --darts;
+            g_mainWindow->updateLabels();
+            ++darts;
         }
         }
     g_mainWindow->updateLabels();
