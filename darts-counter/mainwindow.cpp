@@ -58,6 +58,13 @@ void MainWindow::on_return_2_clicked()
 
 void MainWindow::updateLabels()
 {
+    //Lowk nothing to do with labels but deactivates return if first player darts is empty so we get no SIGSEGV by people spamming return and this function is handy for this cuz
+    //its executed every fucking millisecond
+    if(players[0].darts.empty()){
+        ui->return_2->setEnabled(false);
+    }else{
+        ui->return_2->setEnabled(true);
+    }
     if(players[0].score != 0){
     ui->player1Score->setText(QString::number(players[0].score));
     }else{
