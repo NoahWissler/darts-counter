@@ -12,7 +12,7 @@ extern MainWindow *g_mainWindow;
         return 0.00;
     }
 
-void dartevaluator(char factor, player &player){
+void dartevaluator(char factor, player &player, int &darts){
     int dartvalue {};
     switch(factor){
     case 'S':
@@ -32,7 +32,30 @@ void dartevaluator(char factor, player &player){
     }else if(player.score - dartvalue == 0 && factor == 'D'){
         player.score -=dartvalue;
     }else{
-            player.darts[player.darts.size()-1] = 0;
+        player.darts[player.darts.size()-1] = 0;
+        g_mainWindow->updateLabels();
+        if(darts == 1){
+            ++darts;
+            player.darts.push_back(0);
+            g_mainWindow->updateLabels();
+            ++darts;
+            player.darts.push_back(0);
+        }
+        else if(darts == 2){
+            player.score = player.score + player.darts[player.darts.size()-2];
+            player.darts[player.darts.size()-2] = 0;
+            ++darts;
+            player.darts.push_back(0);
+            g_mainWindow->updateLabels();
+        }
+        else if(darts == 3){
+            player.score = player.score + player.darts[player.darts.size()-2];
+            player.darts[player.darts.size()-2] = 0;
+            player.score = player.score + player.darts[player.darts.size()-3];
+            player.darts[player.darts.size()-3] = 0;
+            g_mainWindow->updateLabels();
+
+        }
         }
     g_mainWindow->updateLabels();
     }

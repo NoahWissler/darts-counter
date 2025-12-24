@@ -13,7 +13,7 @@ public:
 
 void dartsCounter();
 
-void dartevaluator(char factor, player &player);
+void dartevaluator(char factor, player &player, int &darts);
 
 
 #endif // DARTS_COUNTER_H
