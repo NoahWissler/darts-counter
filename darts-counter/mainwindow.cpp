@@ -29,6 +29,8 @@ std::vector<player> players(2);
 
 void MainWindow::on_return_2_clicked()
 {
+    factor = 'S';
+    ui->threw25->setEnabled(true);
     if(currPlayer == 1 && darts == 0){
         players[0].score = players[0].score + players[0].darts[players[0].darts.size()-1];
         players[0].darts.pop_back();
