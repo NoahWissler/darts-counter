@@ -78,7 +78,11 @@ void MainWindow::updateLabels()
             buttons[i]->setEnabled(false);
         }
     }
+    if(!players[0].darts.empty()){
     ui->player1Avg->setText(QString::number(players[0].calcLegAvg()));
+    }else{
+    ui->player1Avg->setText("No Average Yet");
+    }
     if(players[1].score != 0){
     ui->player2Score->setText(QString::number(players[1].score));
     }else{
@@ -88,7 +92,11 @@ void MainWindow::updateLabels()
             buttons[i]->setEnabled(false);
         }
     }
-    ui->player2Avg->setText(QString::number(players[1].calcLegAvg()));
+    if(!players[1].darts.empty()){
+        ui->player2Avg->setText(QString::number(players[1].calcLegAvg()));
+    }else{
+        ui->player2Avg->setText("No Average Yet");
+    }
 
     if(currPlayer == 0){
         switch(darts){
