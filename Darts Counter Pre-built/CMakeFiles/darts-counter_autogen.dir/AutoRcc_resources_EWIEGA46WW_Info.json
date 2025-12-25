@@ -1,0 +1,26 @@
+{
+	"BUILD_DIR" : "C:/Users/noahw/Desktop/repositories/darts-counter/darts-counter/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release/darts-counter_autogen",
+	"CMAKE_BINARY_DIR" : "C:/Users/noahw/Desktop/repositories/darts-counter/darts-counter/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release",
+	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/noahw/Desktop/repositories/darts-counter/darts-counter/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/noahw/Desktop/repositories/darts-counter/darts-counter",
+	"CMAKE_SOURCE_DIR" : "C:/Users/noahw/Desktop/repositories/darts-counter/darts-counter",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "C:/Users/noahw/Desktop/repositories/darts-counter/darts-counter/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release/darts-counter_autogen/include",
+	"INPUTS" : 
+	[
+		"C:/Users/noahw/Desktop/repositories/darts-counter/darts-counter/Darkeum.qss",
+		"C:/Users/noahw/Desktop/repositories/darts-counter/darts-counter/darts.png"
+	],
+	"LOCK_FILE" : "C:/Users/noahw/Desktop/repositories/darts-counter/darts-counter/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release/CMakeFiles/darts-counter_autogen.dir/AutoRcc_resources_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "--no-zstd", "-name", "resources" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_resources.cpp",
+	"RCC_EXECUTABLE" : "C:/Qt/6.9.1/mingw_64/bin/rcc.exe",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "C:/Users/noahw/Desktop/repositories/darts-counter/darts-counter/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release/CMakeFiles/darts-counter_autogen.dir/AutoRcc_resources_EWIEGA46WW_Used.txt",
+	"SOURCE" : "C:/Users/noahw/Desktop/repositories/darts-counter/darts-counter/resources.qrc",
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}
