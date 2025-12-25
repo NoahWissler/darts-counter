@@ -27,11 +27,12 @@ void dartevaluator(char factor, player &player, int &darts){
         player.darts[player.darts.size()-1] = dartvalue;
         break;
     }
-    if(player.score - dartvalue > 0){
+    if(player.score - dartvalue > 1){
         player.score -=dartvalue;
     }else if(player.score - dartvalue == 0 && factor == 'D'){
         player.score -=dartvalue;
-    }else{
+    }
+    if((player.score - dartvalue == 0 && factor != 'D') || player.score - dartvalue == 1 ){
         player.darts[player.darts.size()-1] = 0;
         g_mainWindow->updateLabels();
         if(darts == 1){
