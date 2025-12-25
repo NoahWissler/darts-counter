@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Darts Counter");
+    this->setWindowIcon(QIcon(":/icons/darts.png"));
     g_mainWindow = this;
     updateLabels();
     ui->player2FirstDart->setText("/");

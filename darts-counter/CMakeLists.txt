@@ -19,12 +19,19 @@ set(PROJECT_SOURCES
         mainwindow.ui
 )
 
+if(WIN32)
+    set(APP_ICON_RESOURCE "${CMAKE_CURRENT_SOURCE_DIR}/appicon.rc")
+endif()
+
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(darts-counter
+        WIN32
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         darts-counter.cpp
         darts-counter.h
+        resources.qrc
+        ${APP_ICON_RESOURCE} 
 
     )
 # Define target properties for Android with Qt 6 as:
@@ -70,4 +77,21 @@ install(TARGETS darts-counter
 
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(darts-counter)
+endif()
+
+# Automatic deployment of Qt-DLLs on Windows (only Release)
+if(WIN32 AND CMAKE_BUILD_TYPE MATCHES Release)
+    find_program(WINDEPLOYQT_EXECUTABLE windeployqt HINTS "${QT_INSTALL_PATH}/bin")
+
+    if(WINDEPLOYQT_EXECUTABLE)
+        add_custom_command(
+            TARGET darts-counter POST_BUILD
+            COMMAND "${WINDEPLOYQT_EXECUTABLE}"
+                --release
+                $<TARGET_FILE:darts-counter>
+            COMMENT "Deploying Qt DLLs with windeployqt..."
+        )
+    else()
+        message(WARNING "windeployqt not found – DLLs are not copied automatically!")
+    endif()
 endif()
