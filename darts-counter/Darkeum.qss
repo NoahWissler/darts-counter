@@ -206,6 +206,13 @@ QPushButton::pressed
 }
 
 
+QPushButton:checked {
+    background-color: green;  /* Bright color for ON state */
+    border: 2px solid darkgreen;  /* Optional: thicker border to emphasize */
+    color: white;  /* Optional: text color for contrast */
+}
+
+
 /*-----QToolButton-----*/
 QToolButton
 {

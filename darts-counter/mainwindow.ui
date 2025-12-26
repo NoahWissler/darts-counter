@@ -469,6 +469,9 @@
               <property name="text">
                <string>Double</string>
               </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
             <item>
@@ -481,6 +484,9 @@
               </property>
               <property name="text">
                <string>Triple</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
