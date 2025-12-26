@@ -19,6 +19,10 @@ public:
 
 public slots:
 
+    void changeCurrPlayer();
+
+    void setUiNewThrow();
+
     void updateLabels();
 
     void on_double_2_clicked();
