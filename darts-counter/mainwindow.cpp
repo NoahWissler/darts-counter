@@ -70,6 +70,11 @@ void MainWindow::updateLabels()
         switch(darts){
 
         case 0:
+            if(!players[1].darts.empty()){
+            ui->player2FirstDart->setText(QString::number(players[1].darts[players[1].darts.size()-3]));
+            ui->player2SecondDart->setText(QString::number(players[1].darts[players[1].darts.size()-2]));
+            ui->player2ThirdDart->setText(QString::number(players[1].darts[players[1].darts.size()-1]));
+            }
             ui->player1FirstDart->setText("/");
             ui->player1SecondDart->setText("/");
             ui->player1ThirdDart->setText("/");
@@ -80,10 +85,13 @@ void MainWindow::updateLabels()
             ui->player1ThirdDart->setText("/");
             break;
         case 2:
+            ui->player1FirstDart->setText(QString::number(players[0].darts[players[0].darts.size()-2]));
             ui->player1SecondDart->setText(QString::number(players[0].darts[players[0].darts.size()-1]));
             ui->player1ThirdDart->setText("/");
             break;
         case 3:
+            ui->player1FirstDart->setText(QString::number(players[0].darts[players[0].darts.size()-3]));
+            ui->player1SecondDart->setText(QString::number(players[0].darts[players[0].darts.size()-2]));
             ui->player1ThirdDart->setText(QString::number(players[0].darts[players[0].darts.size()-1]));
             break;
         }
@@ -91,6 +99,11 @@ void MainWindow::updateLabels()
         switch(darts){
 
         case 0:
+            if(!players[0].darts.empty()){
+            ui->player1FirstDart->setText(QString::number(players[0].darts[players[0].darts.size()-3]));
+            ui->player1SecondDart->setText(QString::number(players[0].darts[players[0].darts.size()-2]));
+            ui->player1ThirdDart->setText(QString::number(players[0].darts[players[0].darts.size()-1]));
+            }
             ui->player2FirstDart->setText("/");
             ui->player2SecondDart->setText("/");
             ui->player2ThirdDart->setText("/");
@@ -101,10 +114,13 @@ void MainWindow::updateLabels()
             ui->player2ThirdDart->setText("/");
             break;
         case 2:
+            ui->player2FirstDart->setText(QString::number(players[1].darts[players[1].darts.size()-2]));
             ui->player2SecondDart->setText(QString::number(players[1].darts[players[1].darts.size()-1]));
             ui->player2ThirdDart->setText("/");
             break;
         case 3:
+            ui->player2FirstDart->setText(QString::number(players[1].darts[players[1].darts.size()-3]));
+            ui->player2SecondDart->setText(QString::number(players[1].darts[players[1].darts.size()-2]));
             ui->player2ThirdDart->setText(QString::number(players[1].darts[players[1].darts.size()-1]));
             break;
         }
