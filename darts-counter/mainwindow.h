@@ -18,6 +18,9 @@ public:
     ~MainWindow();
 
 public slots:
+
+    void changeCurrPlayer();
+
     void setUiNewThrow();
 
     void updateLabels();

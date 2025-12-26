@@ -112,6 +112,20 @@ void MainWindow::updateLabels()
 
 }
 
+void MainWindow::changeCurrPlayer(){
+    if(darts > 2){
+        if(currPlayer == 0){
+            currPlayer = 1;
+            darts = 0;
+            updateLabels();
+        }else{
+            currPlayer = 0;
+            darts = 0;
+            updateLabels();
+        }
+    }
+}
+
 void MainWindow::setUiNewThrow(){
     factor = 'S';
     ui->threw0->setEnabled(true);
@@ -184,18 +198,7 @@ void MainWindow::on_threw0_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
+    changeCurrPlayer();
 }
 
 void MainWindow::on_threw1_clicked()
@@ -204,19 +207,7 @@ void MainWindow::on_threw1_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 
@@ -226,19 +217,7 @@ void MainWindow::on_threw2_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 
@@ -248,19 +227,7 @@ void MainWindow::on_threw3_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 
@@ -270,19 +237,7 @@ void MainWindow::on_threw4_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 
@@ -292,19 +247,7 @@ void MainWindow::on_threw5_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 
@@ -314,19 +257,7 @@ void MainWindow::on_threw6_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 
@@ -336,19 +267,7 @@ void MainWindow::on_threw7_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 
@@ -358,19 +277,7 @@ void MainWindow::on_threw8_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 void MainWindow::on_threw9_clicked()
@@ -379,19 +286,7 @@ void MainWindow::on_threw9_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 
@@ -401,19 +296,7 @@ void MainWindow::on_threw10_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 void MainWindow::on_threw11_clicked()
@@ -422,19 +305,7 @@ void MainWindow::on_threw11_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 
@@ -444,19 +315,7 @@ void MainWindow::on_threw12_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 void MainWindow::on_threw13_clicked()
@@ -465,19 +324,7 @@ void MainWindow::on_threw13_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 
@@ -487,19 +334,7 @@ void MainWindow::on_threw14_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 void MainWindow::on_threw15_clicked()
@@ -508,19 +343,7 @@ void MainWindow::on_threw15_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 
@@ -530,19 +353,7 @@ void MainWindow::on_threw16_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 void MainWindow::on_threw17_clicked()
@@ -551,19 +362,7 @@ void MainWindow::on_threw17_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 
@@ -573,19 +372,7 @@ void MainWindow::on_threw18_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 void MainWindow::on_threw19_clicked()
@@ -594,19 +381,7 @@ void MainWindow::on_threw19_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 
@@ -616,19 +391,7 @@ void MainWindow::on_threw20_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 void MainWindow::on_threw25_clicked()
@@ -637,19 +400,7 @@ void MainWindow::on_threw25_clicked()
     ++darts;
     dartevaluator(factor, players[currPlayer], darts);
     setUiNewThrow();
-    if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
-        }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
-        }
-    }
-
-
+    changeCurrPlayer();
 }
 
 
