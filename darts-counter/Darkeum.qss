@@ -300,6 +300,7 @@ QComboBox QAbstractItemView
     background-color: #383838;
     color: #ffffff;
     border: 1px solid black;
+    padding right: 50px;
     selection-background-color: #4969ff;
     selection-color: #ffffff;
     outline: 0;
@@ -311,8 +312,8 @@ QComboBox::drop-down
 {
     subcontrol-origin: padding;
     subcontrol-position: top right;
-    width: 15px;
-    border-left-width: 0px;
+    width: 40px;
+    border-left-width: 1px;
     border-left-color: darkgray;
     border-left-style: solid; 
     border-top-right-radius: 3px; 
@@ -323,9 +324,7 @@ QComboBox::drop-down
 
 QComboBox::down-arrow
 {
-    image: url(://arrow-down.png);
-    width: 8px;
-    height: 8px;
+image: url(:/icons/arrowDown.png)
 }
 
 

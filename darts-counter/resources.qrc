@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/icons">
         <file>darts.png</file>
+        <file>arrowDown.png</file>
     </qresource>
     <qresource prefix="/styles">
         <file>Darkeum.qss</file>

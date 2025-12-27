@@ -3,6 +3,7 @@
 #include "mainwindow.h"
 #include <cstdint>
 #include <vector>
+extern MainWindow *g_mainWindow;
 class player{
 public:
     int score{501};
