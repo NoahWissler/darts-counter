@@ -420,3 +420,12 @@ void MainWindow::on_threw25_clicked()
 }
 
 
+
+
+
+
+void MainWindow::on_start_clicked()
+{
+    ui->pages->setCurrentIndex(1);
+}
+
