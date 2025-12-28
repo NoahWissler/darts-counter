@@ -19,6 +19,8 @@ public:
 
 public slots:
 
+    void initializePlayerProfiles();
+
     void changeCurrPlayer();
 
     void setUiNewThrow();

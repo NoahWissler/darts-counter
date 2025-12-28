@@ -2,12 +2,17 @@
 #define DARTS_COUNTER_H
 #include "mainwindow.h"
 #include <cstdint>
+#include <qlabel.h>
 #include <vector>
 extern MainWindow *g_mainWindow;
 class player{
 public:
-    int score{501};
+    std::string name {};
+    int score{};
     std::vector<uint8_t> darts;
+    int setsWon {};
+    int legsWon {};
+    QList<QLabel*> labels;
 
     double calcLegAvg();
 };

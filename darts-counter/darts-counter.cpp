@@ -31,6 +31,7 @@ void dartevaluator(char factor, player &player, int &darts){
         player.score -=dartvalue;
     }else if(player.score - dartvalue == 0 && factor == 'D'){
         player.score -=dartvalue;
+        ++player.legsWon;
     }
     if((player.score - dartvalue == 0 && factor != 'D') || player.score - dartvalue == 1 ){
         player.darts[player.darts.size()-1] = 0;

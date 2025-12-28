@@ -51,7 +51,7 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QComboBox" name="comboBox_2">
+          <widget class="QComboBox" name="selectNrPlayers">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -84,7 +84,7 @@
           </widget>
          </item>
          <item row="3" column="1">
-          <widget class="QComboBox" name="comboBox">
+          <widget class="QComboBox" name="selectPlayerScore">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -125,7 +125,7 @@
           </widget>
          </item>
          <item row="5" column="1">
-          <widget class="QComboBox" name="legs">
+          <widget class="QComboBox" name="sets">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -199,7 +199,7 @@
           </widget>
          </item>
          <item row="5" column="2">
-          <widget class="QComboBox" name="sets">
+          <widget class="QComboBox" name="legs">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -250,7 +250,7 @@
           </widget>
          </item>
          <item row="3" column="2">
-          <widget class="QComboBox" name="comboBox_3">
+          <widget class="QComboBox" name="selectCheckoutType">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>

@@ -11,7 +11,6 @@ MainWindow::MainWindow(QWidget *parent)
     this->setWindowTitle("Darts Counter");
     this->setWindowIcon(QIcon(":/icons/darts.png"));
     g_mainWindow = this;
-    updateLabels();
     ui->player2FirstDart->setText("/");
     ui->player2SecondDart->setText("/");
     ui->player2ThirdDart->setText("/");
@@ -24,9 +23,32 @@ MainWindow::~MainWindow()
 
 char factor = 'S';
 int currPlayer {0};
+int nextPlayer {1};
+int previousPlayer {};
 int darts {};
-std::vector<player> players(2);
+std::vector<player> players;
+int nrPlayers {};
+int nrLegsPerSet {};
+int nrSets {};
 
+void MainWindow::initializePlayerProfiles(){
+nrPlayers = ui->selectNrPlayers->currentText().toInt();
+players.resize(nrPlayers);
+previousPlayer = nrPlayers-1;
+nrLegsPerSet = ui->legs->currentText().toInt();
+nrSets = ui->sets->currentText().toInt();
+
+for(int i {}; i < nrPlayers; ++i){
+    players[i].name = "Player " + std::to_string((i+1));
+    players[i].score = ui->selectPlayerScore->currentText().toInt();
+    if((i+1)%2 != 0){
+        players[i].labels = {ui->player1Name, ui->player1Score, ui->player1Avg, ui->player1FirstDart, ui->player1SecondDart, ui->player1ThirdDart};
+    }else{
+        players[i].labels = {ui->player2Name, ui->player2Score, ui->player2Avg, ui->player2FirstDart, ui->player2SecondDart, ui->player2ThirdDart};
+    }
+
+}
+}
 
 void MainWindow::updateLabels()
 {
@@ -37,108 +59,80 @@ void MainWindow::updateLabels()
     }else{
         ui->return_2->setEnabled(true);
     }
-    if(players[0].score != 0){
-    ui->player1Score->setText(QString::number(players[0].score));
+
+    players[currPlayer].labels[0]->setText(QString::fromStdString(players[currPlayer].name));
+    players[nextPlayer].labels[0]->setText(QString::fromStdString(players[nextPlayer].name));
+
+    if(players[currPlayer].score != 0){
+    players[currPlayer].labels[1]->setText(QString::number(players[currPlayer].score));
     }else{
-    ui->player1Score->setText("Winner");
+    players[currPlayer].labels[1]->setText("Winner");
         QList<QPushButton*> buttons = findChildren<QPushButton*>();
         for (int i = 0; i < buttons.size(); ++i) {
             buttons[i]->setEnabled(false);
         }
     }
-    if(!players[0].darts.empty()){
-    ui->player1Avg->setText(QString::number(players[0].calcLegAvg()));
+    if(!players[currPlayer].darts.empty()){
+    players[currPlayer].labels[2]->setText(QString::number(players[currPlayer].calcLegAvg()));
     }else{
-    ui->player1Avg->setText("No Average Yet");
+    players[currPlayer].labels[2]->setText("No Average Yet");
     }
-    if(players[1].score != 0){
-    ui->player2Score->setText(QString::number(players[1].score));
+
+    if(players[nextPlayer].score != 0){
+        players[nextPlayer].labels[1]->setText(QString::number(players[nextPlayer].score));
     }else{
-    ui->player2Score->setText("Winner");
+        players[nextPlayer].labels[1]->setText("Winner");
         QList<QPushButton*> buttons = findChildren<QPushButton*>();
         for (int i = 0; i < buttons.size(); ++i) {
             buttons[i]->setEnabled(false);
         }
     }
-    if(!players[1].darts.empty()){
-        ui->player2Avg->setText(QString::number(players[1].calcLegAvg()));
+    if(!players[nextPlayer].darts.empty()){
+        players[nextPlayer].labels[2]->setText(QString::number(players[nextPlayer].calcLegAvg()));
     }else{
-        ui->player2Avg->setText("No Average Yet");
+        players[nextPlayer].labels[2]->setText("No Average Yet");
     }
-
-    if(currPlayer == 0){
         switch(darts){
 
         case 0:
-            if(!players[1].darts.empty()){
-            ui->player2FirstDart->setText(QString::number(players[1].darts[players[1].darts.size()-3]));
-            ui->player2SecondDart->setText(QString::number(players[1].darts[players[1].darts.size()-2]));
-            ui->player2ThirdDart->setText(QString::number(players[1].darts[players[1].darts.size()-1]));
+            if(!players[nextPlayer].darts.empty()){
+            players[nextPlayer].labels[3]->setText(QString::number(players[nextPlayer].darts[players[nextPlayer].darts.size()-3]));
+            players[nextPlayer].labels[4]->setText(QString::number(players[nextPlayer].darts[players[nextPlayer].darts.size()-2]));
+            players[nextPlayer].labels[5]->setText(QString::number(players[nextPlayer].darts[players[nextPlayer].darts.size()-1]));
             }
-            ui->player1FirstDart->setText("/");
-            ui->player1SecondDart->setText("/");
-            ui->player1ThirdDart->setText("/");
+            players[currPlayer].labels[3]->setText("/");
+            players[currPlayer].labels[4]->setText("/");
+            players[currPlayer].labels[5]->setText("/");
             break;
         case 1:
-            ui->player1FirstDart->setText(QString::number(players[0].darts[players[0].darts.size()-1]));
+            players[currPlayer].labels[3]->setText(QString::number(players[currPlayer].darts[players[currPlayer].darts.size()-1]));
             ui->player1SecondDart->setText("/");
             ui->player1ThirdDart->setText("/");
             break;
         case 2:
-            ui->player1FirstDart->setText(QString::number(players[0].darts[players[0].darts.size()-2]));
-            ui->player1SecondDart->setText(QString::number(players[0].darts[players[0].darts.size()-1]));
+            players[currPlayer].labels[3]->setText(QString::number(players[currPlayer].darts[players[currPlayer].darts.size()-2]));
+            players[currPlayer].labels[4]->setText(QString::number(players[currPlayer].darts[players[currPlayer].darts.size()-1]));
             ui->player1ThirdDart->setText("/");
             break;
         case 3:
-            ui->player1FirstDart->setText(QString::number(players[0].darts[players[0].darts.size()-3]));
-            ui->player1SecondDart->setText(QString::number(players[0].darts[players[0].darts.size()-2]));
-            ui->player1ThirdDart->setText(QString::number(players[0].darts[players[0].darts.size()-1]));
-            break;
-        }
-    }else{
-        switch(darts){
-
-        case 0:
-            if(!players[0].darts.empty()){
-            ui->player1FirstDart->setText(QString::number(players[0].darts[players[0].darts.size()-3]));
-            ui->player1SecondDart->setText(QString::number(players[0].darts[players[0].darts.size()-2]));
-            ui->player1ThirdDart->setText(QString::number(players[0].darts[players[0].darts.size()-1]));
-            }
-            ui->player2FirstDart->setText("/");
-            ui->player2SecondDart->setText("/");
-            ui->player2ThirdDart->setText("/");
-            break;
-        case 1:
-            ui->player2FirstDart->setText(QString::number(players[1].darts[players[1].darts.size()-1]));
-            ui->player2SecondDart->setText("/");
-            ui->player2ThirdDart->setText("/");
-            break;
-        case 2:
-            ui->player2FirstDart->setText(QString::number(players[1].darts[players[1].darts.size()-2]));
-            ui->player2SecondDart->setText(QString::number(players[1].darts[players[1].darts.size()-1]));
-            ui->player2ThirdDart->setText("/");
-            break;
-        case 3:
-            ui->player2FirstDart->setText(QString::number(players[1].darts[players[1].darts.size()-3]));
-            ui->player2SecondDart->setText(QString::number(players[1].darts[players[1].darts.size()-2]));
-            ui->player2ThirdDart->setText(QString::number(players[1].darts[players[1].darts.size()-1]));
+            players[currPlayer].labels[3]->setText(QString::number(players[currPlayer].darts[players[currPlayer].darts.size()-3]));
+            players[currPlayer].labels[4]->setText(QString::number(players[currPlayer].darts[players[currPlayer].darts.size()-2]));
+            players[currPlayer].labels[5]->setText(QString::number(players[currPlayer].darts[players[currPlayer].darts.size()-1]));
             break;
         }
     }
-
-}
 
 void MainWindow::changeCurrPlayer(){
     if(darts > 2){
-        if(currPlayer == 0){
-            currPlayer = 1;
-            darts = 0;
-            updateLabels();
+        previousPlayer = currPlayer;
+        currPlayer = nextPlayer;
+        if(currPlayer != nrPlayers-1){
+            nextPlayer = currPlayer+1;
         }else{
-            currPlayer = 0;
-            darts = 0;
-            updateLabels();
+            nextPlayer = 0;
         }
+        darts = 0;
+        updateLabels();
     }
 }
 
@@ -148,6 +142,7 @@ void MainWindow::setUiNewThrow(){
     ui->threw25->setEnabled(true);
     ui->double_2->setChecked(false);
     ui->triple->setChecked(false);
+    updateLabels();
 
 
 }
@@ -155,26 +150,18 @@ void MainWindow::setUiNewThrow(){
 void MainWindow::on_return_2_clicked()
 {
     setUiNewThrow();
-    if(currPlayer == 1 && darts == 0){
-        players[0].score = players[0].score + players[0].darts[players[0].darts.size()-1];
-        players[0].darts.pop_back();
-    }else if(currPlayer == 1){
-        players[1].score = players[1].score + players[1].darts[players[1].darts.size()-1];
-        players[1].darts.pop_back();
-    }else if(currPlayer == 0 && darts == 0){
-        players[1].score = players[1].score + players[1].darts[players[1].darts.size()-1];
-        players[1].darts.pop_back();
-    }else if(currPlayer == 0){
-        players[0].score = players[0].score + players[0].darts[players[0].darts.size()-1];
-        players[0].darts.pop_back();
-    }
+
     if(darts == 0){
+            players[previousPlayer].score = players[previousPlayer].score + players[previousPlayer].darts[players[previousPlayer].darts.size()-1];
+            players[previousPlayer].darts.pop_back();
         if(currPlayer == 0){
-            currPlayer = 1;
+            currPlayer = nrPlayers-1;
             darts = 2;
             updateLabels();
         }else{
-            currPlayer = 0;
+            --currPlayer;
+            --nextPlayer;
+            --previousPlayer;
             darts = 2;
             updateLabels();
         }
@@ -182,6 +169,9 @@ void MainWindow::on_return_2_clicked()
         --darts;
         updateLabels();
     }
+    players[currPlayer].score = players[currPlayer].score + players[currPlayer].darts[players[currPlayer].darts.size()-1];
+    players[currPlayer].darts.pop_back();
+    updateLabels();
 }
 
 void MainWindow::on_double_2_clicked()
@@ -426,6 +416,8 @@ void MainWindow::on_threw25_clicked()
 
 void MainWindow::on_start_clicked()
 {
+    initializePlayerProfiles();
+    updateLabels();
     ui->pages->setCurrentIndex(1);
 }
 
