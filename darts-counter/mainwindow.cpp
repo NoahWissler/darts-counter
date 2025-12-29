@@ -98,10 +98,10 @@ void MainWindow::updateLabels()
     }
     if(players[currPlayer].legsWon == nrLegsPerSet){
         ++players[currPlayer].setsWon;
+        players[currPlayer].legsWon = 0;
     }
 
     players[currPlayer].labels[0]->setText(QString::fromStdString(players[currPlayer].name));
-    players[otherShownPlayer].labels[0]->setText(QString::fromStdString(players[otherShownPlayer].name));
 
     if(players[currPlayer].score != 0){
     players[currPlayer].labels[1]->setText(QString::number(players[currPlayer].score));
@@ -119,6 +119,9 @@ void MainWindow::updateLabels()
     players[currPlayer].labels[2]->setText("No Average Yet");
     }
 
+
+    if(otherShownPlayer > -1){
+    players[otherShownPlayer].labels[0]->setText(QString::fromStdString(players[otherShownPlayer].name));
     if(players[otherShownPlayer].score != 0){
         players[otherShownPlayer].labels[1]->setText(QString::number(players[otherShownPlayer].score));
     }
@@ -127,17 +130,22 @@ void MainWindow::updateLabels()
     }else{
         players[otherShownPlayer].labels[2]->setText("No Average Yet");
     }
+    }else{
+        ui->player2Name->setText("/");
+        ui->player2Score->setText("/");
+        ui->player2Avg->setText("/");
+    }
         switch(darts){
 
         case 0:
-            if(!players[otherShownPlayer].darts.empty()){
+            if(!players[otherShownPlayer].darts.empty() && otherShownPlayer > -1){
             players[otherShownPlayer].labels[3]->setText(QString::number(players[otherShownPlayer].darts[players[otherShownPlayer].darts.size()-3]));
             players[otherShownPlayer].labels[4]->setText(QString::number(players[otherShownPlayer].darts[players[otherShownPlayer].darts.size()-2]));
             players[otherShownPlayer].labels[5]->setText(QString::number(players[otherShownPlayer].darts[players[otherShownPlayer].darts.size()-1]));
             }else{
-                players[otherShownPlayer].labels[3]->setText("/");
-                players[otherShownPlayer].labels[4]->setText("/");
-                players[otherShownPlayer].labels[5]->setText("/");
+                ui->player2FirstDart->setText("/");
+                ui->player2SecondDart->setText("/");
+                ui->player2ThirdDart->setText("/");
             }
             players[currPlayer].labels[3]->setText("/");
             players[currPlayer].labels[4]->setText("/");
@@ -172,8 +180,10 @@ void MainWindow::changeCurrPlayer(){
         }
         if(currPlayer%2 != 0){
             otherShownPlayer = currPlayer-1;
-        }else{
+        }else if(nrPlayers%2 == 0){
             otherShownPlayer = currPlayer+1;
+        }else{
+            otherShownPlayer = -1;
         }
         darts = 0;
         updateLabels();
@@ -185,7 +195,6 @@ void MainWindow::setUiNewThrow(){
     if(singleOut){
         checkoutType = factor;
     }
-
     if(players[currPlayer].setsWon != nrSets){
     ui->threw0->setEnabled(true);
     ui->threw25->setEnabled(true);
