@@ -55,6 +55,15 @@ void MainWindow::initializeMatch(){
     previousPlayer = nrPlayers-1;
 }
 
+void MainWindow::newLegReset(){
+    for(int i {}; i < nrPlayers; ++i){
+        if(players[currPlayer].legsWon == nrLegsPerSet){
+            players[i].legsWon = 0;
+        }
+        players[i].score = ui->selectPlayerScore->currentText().toInt();
+        players[i].darts.clear();
+}
+}
 
 
 
@@ -84,8 +93,11 @@ void MainWindow::updateLabels()
     //its executed every fucking millisecond
     if(players[0].darts.empty()){
         ui->return_2->setEnabled(false);
-    }else{
+    }else if(players[currPlayer].setsWon != nrSets){
         ui->return_2->setEnabled(true);
+    }
+    if(players[currPlayer].legsWon == nrLegsPerSet){
+        ++players[currPlayer].setsWon;
     }
 
     players[currPlayer].labels[0]->setText(QString::fromStdString(players[currPlayer].name));
@@ -93,7 +105,7 @@ void MainWindow::updateLabels()
 
     if(players[currPlayer].score != 0){
     players[currPlayer].labels[1]->setText(QString::number(players[currPlayer].score));
-    }else{
+    }else if(players[currPlayer].setsWon == nrSets){
     players[currPlayer].labels[1]->setStyleSheet("QLabel {color: #D3AF37;} ");
     players[currPlayer].labels[1]->setText("Winner");
         QList<QPushButton*> buttons = findChildren<QPushButton*>();
@@ -150,7 +162,7 @@ void MainWindow::updateLabels()
     }
 
 void MainWindow::changeCurrPlayer(){
-    if(darts > 2 && (players[currPlayer].score != 0)){
+    if(darts > 2 && (players[currPlayer].setsWon != nrSets)){
         previousPlayer = currPlayer;
         currPlayer = nextPlayer;
         if(currPlayer != nrPlayers-1){
@@ -173,8 +185,15 @@ void MainWindow::setUiNewThrow(){
     if(singleOut){
         checkoutType = factor;
     }
+
+    if(players[currPlayer].setsWon != nrSets){
     ui->threw0->setEnabled(true);
     ui->threw25->setEnabled(true);
+    }else{
+        ui->threw0->setEnabled(false);
+        ui->threw25->setEnabled(false);
+        ui->return_2->setEnabled(false);
+    }
     ui->double_2->setChecked(false);
     ui->triple->setChecked(false);
     updateLabels();
@@ -243,7 +262,7 @@ void MainWindow::on_threw0_clicked()
 {
     players[currPlayer].darts.push_back(0);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -252,7 +271,7 @@ void MainWindow::on_threw1_clicked()
 {
     players[currPlayer].darts.push_back(1);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -262,7 +281,7 @@ void MainWindow::on_threw2_clicked()
 {
     players[currPlayer].darts.push_back(2);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -272,7 +291,7 @@ void MainWindow::on_threw3_clicked()
 {
     players[currPlayer].darts.push_back(3);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -282,7 +301,7 @@ void MainWindow::on_threw4_clicked()
 {
     players[currPlayer].darts.push_back(4);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -292,7 +311,7 @@ void MainWindow::on_threw5_clicked()
 {
     players[currPlayer].darts.push_back(5);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -302,7 +321,7 @@ void MainWindow::on_threw6_clicked()
 {
     players[currPlayer].darts.push_back(6);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -312,7 +331,7 @@ void MainWindow::on_threw7_clicked()
 {
     players[currPlayer].darts.push_back(7);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -322,7 +341,7 @@ void MainWindow::on_threw8_clicked()
 {
     players[currPlayer].darts.push_back(8);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -331,7 +350,7 @@ void MainWindow::on_threw9_clicked()
 {
     players[currPlayer].darts.push_back(9);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -341,7 +360,7 @@ void MainWindow::on_threw10_clicked()
 {
     players[currPlayer].darts.push_back(10);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -350,7 +369,7 @@ void MainWindow::on_threw11_clicked()
 {
     players[currPlayer].darts.push_back(11);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -360,7 +379,7 @@ void MainWindow::on_threw12_clicked()
 {
     players[currPlayer].darts.push_back(12);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -369,7 +388,7 @@ void MainWindow::on_threw13_clicked()
 {
     players[currPlayer].darts.push_back(13);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -379,7 +398,7 @@ void MainWindow::on_threw14_clicked()
 {
     players[currPlayer].darts.push_back(14);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -388,7 +407,7 @@ void MainWindow::on_threw15_clicked()
 {
     players[currPlayer].darts.push_back(15);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -398,7 +417,7 @@ void MainWindow::on_threw16_clicked()
 {
     players[currPlayer].darts.push_back(16);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -407,7 +426,7 @@ void MainWindow::on_threw17_clicked()
 {
     players[currPlayer].darts.push_back(17);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -417,7 +436,7 @@ void MainWindow::on_threw18_clicked()
 {
     players[currPlayer].darts.push_back(18);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -426,7 +445,7 @@ void MainWindow::on_threw19_clicked()
 {
     players[currPlayer].darts.push_back(19);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -436,7 +455,7 @@ void MainWindow::on_threw20_clicked()
 {
     players[currPlayer].darts.push_back(20);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }
@@ -445,7 +464,7 @@ void MainWindow::on_threw25_clicked()
 {
     players[currPlayer].darts.push_back(25);
     ++darts;
-    dartevaluator(lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
+    dartevaluator(nrLegsPerSet, nrSets, lowestCheckoutNr, checkoutType, factor, players[currPlayer], darts);
     setUiNewThrow();
     changeCurrPlayer();
 }

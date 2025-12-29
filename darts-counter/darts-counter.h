@@ -10,8 +10,8 @@ public:
     std::string name {};
     int score{};
     std::vector<uint8_t> darts;
-    int setsWon {};
-    int legsWon {};
+    int setsWon {0};
+    int legsWon {0};
     QList<QLabel*> labels;
 
     double calcLegAvg();
@@ -19,7 +19,7 @@ public:
 
 void dartsCounter();
 
-void dartevaluator(int &lowestCheckoutNr, char &checkoutType, char &factor, player &player, int &darts);
+void dartevaluator(int &nrLegsPerSet, int &nrSets, int &lowestCheckoutNr, char &checkoutType, char &factor, player &player, int &darts);
 
 
 #endif // DARTS_COUNTER_H

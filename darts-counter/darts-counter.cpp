@@ -12,7 +12,7 @@ extern MainWindow *g_mainWindow;
         return 0.00;
     }
 
-    void dartevaluator(int &lowestCheckoutNr, char &checkoutType, char &factor, player &player, int &darts){
+    void dartevaluator(int &nrLegsPerSet, int &nrSets, int &lowestCheckoutNr, char &checkoutType, char &factor, player &player, int &darts){
     int dartvalue {};
     switch(factor){
     case 'S':
@@ -27,11 +27,15 @@ extern MainWindow *g_mainWindow;
         player.darts[player.darts.size()-1] = dartvalue;
         break;
     }
-    if(player.score - dartvalue > 1){
+    if(player.score - dartvalue > (lowestCheckoutNr-1)){
         player.score -=dartvalue;
     }else if(player.score - dartvalue == 0 && factor == checkoutType){
         player.score -=dartvalue;
         ++player.legsWon;
+        g_mainWindow->updateLabels();
+        if(player.setsWon != nrSets){
+            g_mainWindow->newLegReset();
+        }
     }
     if((player.score - dartvalue == 0 && factor != checkoutType) || (player.score - dartvalue) < lowestCheckoutNr && (player.score - dartvalue > 0)){
         player.darts[player.darts.size()-1] = 0;

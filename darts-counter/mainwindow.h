@@ -18,6 +18,9 @@ public:
     ~MainWindow();
 
 public slots:
+
+    void newLegReset();
+
     void initializeMatch();
 
     void initializePlayerProfiles();
