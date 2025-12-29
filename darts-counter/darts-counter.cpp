@@ -12,7 +12,7 @@ extern MainWindow *g_mainWindow;
         return 0.00;
     }
 
-void dartevaluator(char factor, player &player, int &darts){
+    void dartevaluator(int &lowestCheckoutNr, char &checkoutType, char &factor, player &player, int &darts){
     int dartvalue {};
     switch(factor){
     case 'S':
@@ -29,11 +29,11 @@ void dartevaluator(char factor, player &player, int &darts){
     }
     if(player.score - dartvalue > 1){
         player.score -=dartvalue;
-    }else if(player.score - dartvalue == 0 && factor == 'D'){
+    }else if(player.score - dartvalue == 0 && factor == checkoutType){
         player.score -=dartvalue;
         ++player.legsWon;
     }
-    if((player.score - dartvalue == 0 && factor != 'D') || player.score - dartvalue == 1 ){
+    if((player.score - dartvalue == 0 && factor != checkoutType) || (player.score - dartvalue) < lowestCheckoutNr && (player.score - dartvalue > 0)){
         player.darts[player.darts.size()-1] = 0;
         g_mainWindow->updateLabels();
         if(darts == 1){

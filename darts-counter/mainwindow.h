@@ -18,6 +18,7 @@ public:
     ~MainWindow();
 
 public slots:
+    void initializeMatch();
 
     void initializePlayerProfiles();
 

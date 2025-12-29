@@ -19,7 +19,7 @@ public:
 
 void dartsCounter();
 
-void dartevaluator(char factor, player &player, int &darts);
+void dartevaluator(int &lowestCheckoutNr, char &checkoutType, char &factor, player &player, int &darts);
 
 
 #endif // DARTS_COUNTER_H
