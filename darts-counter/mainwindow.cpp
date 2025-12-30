@@ -215,18 +215,13 @@ void MainWindow::on_return_2_clicked()
     setUiNewThrow();
 
     if(darts == 0){
-            players[previousPlayer].score = players[previousPlayer].score + players[previousPlayer].darts[players[previousPlayer].darts.size()-1];
-            players[previousPlayer].darts.pop_back();
-        if(currPlayer == 0){
-            currPlayer = nrPlayers-1;
-            darts = 2;
-            updateLabels();
-        }else{
-            --currPlayer;
-            --nextPlayer;
+        nextPlayer = currPlayer;
+        currPlayer = previousPlayer;
+        darts = 2;
+        if(previousPlayer != 0){
             --previousPlayer;
-            darts = 2;
-            updateLabels();
+        }else{
+            previousPlayer = nrPlayers-1;
         }
     }else{
         --darts;
