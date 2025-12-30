@@ -46,7 +46,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>Legs</string>
+            <string> Legs (First To Format)</string>
            </property>
           </widget>
          </item>
@@ -181,7 +181,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>Sets</string>
+            <string>Sets (First To Format)</string>
            </property>
           </widget>
          </item>
