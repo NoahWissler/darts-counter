@@ -62,6 +62,7 @@ void MainWindow::newLegReset(){
         }
         players[i].score = ui->selectPlayerScore->currentText().toInt();
         players[i].darts.clear();
+        players[i].darts.shrink_to_fit();
 }
 }
 
@@ -100,7 +101,8 @@ void MainWindow::updateLabels()
         ++players[currPlayer].setsWon;
         players[currPlayer].legsWon = 0;
     }
-
+    players[currPlayer].labels[0]->setStyleSheet("QLabel { color : red;}");
+    players[otherShownPlayer].labels[0]->setStyleSheet("QLabel { color : white; }");
     players[currPlayer].labels[0]->setText(QString::fromStdString(players[currPlayer].name));
 
     if(players[currPlayer].score != 0){
@@ -162,9 +164,15 @@ void MainWindow::updateLabels()
             players[currPlayer].labels[5]->setText("/");
             break;
         case 3:
+            if(!players[currPlayer].darts.empty()){ // fixing bug where at new leg segmentation fault
             players[currPlayer].labels[3]->setText(QString::number(players[currPlayer].darts[players[currPlayer].darts.size()-3]));
             players[currPlayer].labels[4]->setText(QString::number(players[currPlayer].darts[players[currPlayer].darts.size()-2]));
             players[currPlayer].labels[5]->setText(QString::number(players[currPlayer].darts[players[currPlayer].darts.size()-1]));
+            }else{
+                ui->player1FirstDart->setText("/"); // fixing bug where at new leg if uneven number player wins old darts are displayed
+                ui->player1SecondDart->setText("/"); // ""
+                ui->player1ThirdDart->setText("/"); //""
+            }
             break;
         }
     }
@@ -222,6 +230,13 @@ void MainWindow::on_return_2_clicked()
             --previousPlayer;
         }else{
             previousPlayer = nrPlayers-1;
+        }
+        if(currPlayer%2 != 0){
+            otherShownPlayer = currPlayer-1;
+        }else if(nrPlayers%2 == 0){
+            otherShownPlayer = currPlayer+1;
+        }else{
+            otherShownPlayer = -1;
         }
     }else{
         --darts;
