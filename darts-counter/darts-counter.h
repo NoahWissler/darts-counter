@@ -17,8 +17,6 @@ public:
     double calcLegAvg();
 };
 
-void dartsCounter();
-
 void dartevaluator(int &nrLegsPerSet, int &nrSets, int &lowestCheckoutNr, char &checkoutType, char &factor, player &player, int &darts);
 
 

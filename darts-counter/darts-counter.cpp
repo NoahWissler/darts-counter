@@ -27,9 +27,9 @@ extern MainWindow *g_mainWindow;
         player.darts[player.darts.size()-1] = dartvalue;
         break;
     }
-    if(player.score - dartvalue > (lowestCheckoutNr-1)){
+
         player.score -=dartvalue;
-    }else if(player.score - dartvalue == 0 && factor == checkoutType){
+        if(player.score - dartvalue == 0 && factor == checkoutType){
         player.score -=dartvalue;
         ++player.legsWon;
         g_mainWindow->updateLabels();
@@ -37,7 +37,9 @@ extern MainWindow *g_mainWindow;
             g_mainWindow->newLegReset();
         }
     }
-    if((player.score - dartvalue == 0 && factor != checkoutType) || (player.score - dartvalue) < lowestCheckoutNr && (player.score - dartvalue > 0)){
+
+    if(player.score == 0 && factor != checkoutType || player.score < lowestCheckoutNr && player.score != 0){        // fix bug
+        player.score = player.score + player.darts[player.darts.size()-1];
         player.darts[player.darts.size()-1] = 0;
         g_mainWindow->updateLabels();
         if(darts == 1){
@@ -57,8 +59,6 @@ extern MainWindow *g_mainWindow;
             g_mainWindow->updateLabels();
             ++darts;
             player.darts.push_back(0);
-
-
         }
         else if(darts == 3){
             player.score = player.score + player.darts[player.darts.size()-3];
@@ -78,4 +78,3 @@ extern MainWindow *g_mainWindow;
     g_mainWindow->updateLabels();
     }
 
-void dartsCounter(){}
