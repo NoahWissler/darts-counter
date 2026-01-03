@@ -90,6 +90,7 @@ for(int i {}; i < nrPlayers; ++i){
 
 void MainWindow::updateLabels()
 {
+    qDebug() << otherShownPlayer;
     //Lowk nothing to do with labels but deactivates return if first player darts is empty so we get no SIGSEGV by people spamming return and this function is handy for this cuz
     //its executed every fucking millisecond
     if(players[0].darts.empty()){
@@ -102,7 +103,11 @@ void MainWindow::updateLabels()
         players[currPlayer].legsWon = 0;
     }
     players[currPlayer].labels[0]->setStyleSheet("QLabel { color : red;}");
+    if(otherShownPlayer > -1){
     players[otherShownPlayer].labels[0]->setStyleSheet("QLabel { color : white; }");
+    }else{
+        ui->player2Name->setStyleSheet("QLabel { color : white; }");
+    }
     players[currPlayer].labels[0]->setText(QString::fromStdString(players[currPlayer].name));
 
     if(players[currPlayer].score != 0){
@@ -140,11 +145,12 @@ void MainWindow::updateLabels()
         switch(darts){
 
         case 0:
-            if(!players[otherShownPlayer].darts.empty() && otherShownPlayer > -1){
+            if(otherShownPlayer > -1){
+            if(!players[otherShownPlayer].darts.empty()){
             players[otherShownPlayer].labels[3]->setText(QString::number(players[otherShownPlayer].darts[players[otherShownPlayer].darts.size()-3]));
             players[otherShownPlayer].labels[4]->setText(QString::number(players[otherShownPlayer].darts[players[otherShownPlayer].darts.size()-2]));
             players[otherShownPlayer].labels[5]->setText(QString::number(players[otherShownPlayer].darts[players[otherShownPlayer].darts.size()-1]));
-            }else{
+            }}else{
                 ui->player2FirstDart->setText("/");
                 ui->player2SecondDart->setText("/");
                 ui->player2ThirdDart->setText("/");
@@ -157,11 +163,21 @@ void MainWindow::updateLabels()
             players[currPlayer].labels[3]->setText(QString::number(players[currPlayer].darts[players[currPlayer].darts.size()-1]));
             players[currPlayer].labels[4]->setText("/");
             players[currPlayer].labels[5]->setText("/");
+            if(otherShownPlayer == -1){
+                ui->player2FirstDart->setText("/");
+                ui->player2SecondDart->setText("/");
+                ui->player2ThirdDart->setText("/");
+            }
             break;
         case 2:
             players[currPlayer].labels[3]->setText(QString::number(players[currPlayer].darts[players[currPlayer].darts.size()-2]));
             players[currPlayer].labels[4]->setText(QString::number(players[currPlayer].darts[players[currPlayer].darts.size()-1]));
             players[currPlayer].labels[5]->setText("/");
+            if(otherShownPlayer == -1){
+                ui->player2FirstDart->setText("/");
+                ui->player2SecondDart->setText("/");
+                ui->player2ThirdDart->setText("/");
+            }
             break;
         case 3:
             if(!players[currPlayer].darts.empty()){ // fixing bug where at new leg segmentation fault
@@ -186,16 +202,16 @@ void MainWindow::changeCurrPlayer(){
         }else{
             nextPlayer = 0;
         }
-        if(currPlayer%2 != 0){
-            otherShownPlayer = currPlayer-1;
-        }else if(nrPlayers%2 == 0){
-            otherShownPlayer = currPlayer+1;
-        }else{
-            otherShownPlayer = -1;
-        }
         darts = 0;
-        updateLabels();
     }
+    if(currPlayer%2 != 0){
+        otherShownPlayer = currPlayer-1;
+    }else if(currPlayer%2 == 0 && currPlayer != nrPlayers-1){
+        otherShownPlayer = currPlayer+1;
+    }else{
+        otherShownPlayer = -1;
+    }
+    updateLabels();
 }
 
 void MainWindow::setUiNewThrow(){
@@ -231,16 +247,16 @@ void MainWindow::on_return_2_clicked()
         }else{
             previousPlayer = nrPlayers-1;
         }
-        if(currPlayer%2 != 0){
-            otherShownPlayer = currPlayer-1;
-        }else if(nrPlayers%2 == 0){
-            otherShownPlayer = currPlayer+1;
-        }else{
-            otherShownPlayer = -1;
-        }
     }else{
         --darts;
         updateLabels();
+    }
+    if(currPlayer%2 != 0){
+        otherShownPlayer = currPlayer-1;
+    }else if(currPlayer%2 == 0 && currPlayer != nrPlayers-1){
+        otherShownPlayer = currPlayer+1;
+    }else{
+        otherShownPlayer = -1;
     }
     players[currPlayer].score = players[currPlayer].score + players[currPlayer].darts[players[currPlayer].darts.size()-1];
     players[currPlayer].darts.pop_back();
