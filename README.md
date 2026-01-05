@@ -98,7 +98,7 @@ Feel free to open issues or pull requests! Ideas for new features (e.g., multipl
 
 ## License
 
-MIT License.
+no license.
 
 ## Conclusion
 
