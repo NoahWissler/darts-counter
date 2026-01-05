@@ -29,8 +29,7 @@ extern MainWindow *g_mainWindow;
     }
 
         player.score -=dartvalue;
-        if(player.score - dartvalue == 0 && factor == checkoutType){
-        player.score -=dartvalue;
+        if(player.score == 0 && factor == checkoutType){
         ++player.legsWon;
         g_mainWindow->updateLabels();
         if(player.setsWon != nrSets){
